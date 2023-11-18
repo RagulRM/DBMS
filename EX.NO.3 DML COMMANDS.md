@@ -1,4 +1,4 @@
-# EX 2 Data Manipulation Language (DML) Commands and built in functions in SQL
+# EX 3 Data Manipulation Language (DML) Commands and built in functions in SQL
 ## AIM:
 To create a manager database and execute DML queries using SQL.
 
@@ -26,122 +26,126 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 ```
 
 ### Q1) Update all the records of manager table by increasing 10% of their salary as bonus.
-
 ### QUERY:
-
-
+```
+UPDATE manager SET salary = salary + (salary *10/100);
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/d5d26bf7-0ef5-46b6-84c2-c62968b9d3c8)
 
 ### Q2) Delete the records from manager table where the salary less than 2750.
-
-
 ### QUERY:
-
-
+```
+delete from manager where salary < 2750;
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/b2218bd4-ca4f-4e09-988e-aa68fb90b190)
 
 ### Q3) Display each name of the employee as “Name” and annual salary as “Annual Salary” (Note: Salary in emp table is the monthly salary)
-
-
 ### QUERY:
-
-
+```
+select ename as "Name",salary*12 as "Annualsalary" from manager;
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/baca0db8-92b3-4879-b578-fd355783f598)
 
-### Q5)	List the names of Clerks from emp table.
-
-
+### Q4)	List the names of Clerks from emp table.
 ### QUERY:
-
-
+```
+select * from manager
+where designation = 'clerk';
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/2ea314f8-7533-47ee-ae2a-848637409483)
 
-
-### Q6)	List the names of employee who are not Managers.
-
-
+### Q5)	List the names of employee who are not Managers.
 ### QUERY:
-
-
+```
+select * from manager
+where designation != 'manager';
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/2739414c-a082-47b5-9104-6644e76be91b)
 
 
-### Q7)	List the names of employees not eligible for commission.
-
-
+### Q6)	List the names of employees not eligible for commission.
 ### QUERY:
-
-
+```
+select * from manager
+where commission=0;
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/c4b5eeec-55d9-4ac4-8538-642417eb2045)
 
 
-### Q8)	List employees whose name either start or end with ‘s’.
-
-
+### Q7)	List employees whose name either start or end with ‘s’.
 ### QUERY:
-
-
+```
+select ename from manager
+where ename like('s%') or ename like('%s');
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/f041ba0e-8756-485d-9bec-406efd4765fa)
 
 
-### Q9) Sort emp table in ascending order by hire-date and list ename, job, deptno and hire-date.
-
-
+### Q8) Sort emp table in ascending order by hire-date and list ename, job, deptno and hire-date.
 ### QUERY:
-
-
+```
+select ename,designation as "job",deptno,hiredate from manager order by hiredate asc;
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/d23befc2-933c-4895-81a2-73d8fc676e5f)
 
-
-### Q10) List the Details of Employees who have joined before 30 Sept 81.
-
-
+### Q9) List the Details of Employees who have joined before 30 Sept 81.
 ### QUERY:
-
-
+```
+select * from manager where hiredate<to_date('1981-09-30','YYYY-MM-DD');
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/0c5b4d20-39fb-4dbb-a1eb-9c2c3a2ebeb8)
 
-
-### Q11)	List ename, deptno and sal after sorting emp table in ascending order by deptno and then descending order by sal.
-
-
+### Q10)	List ename, deptno and sal after sorting emp table in ascending order by deptno and then descending order by sal.
 ### QUERY:
-
-
+```
+select ename,deptno,salary from manager order by deptno asc,salary desc;
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/0d27410d-a290-497a-a2b4-5c37a9a3e657)
 
-
-### Q12) List the names of employees not belonging to dept no 30,40 & 10
-
-
+### Q11) List the names of employees not belonging to dept no 30,40 & 10
 ### QUERY:
-
-
+```
+select ename from manager
+where deptno != 30 and deptno != 40 and deptno != 10;
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/cbc33c9d-6e38-4f46-97d2-43cfb3ac2669)
 
-### Q13) Find number of rows in the table EMP
-
+### Q12) Find number of rows in the table EMP
 ### QUERY:
-
-
+```
+select count(enum) from manager;
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/66114e71-612c-42af-b5fa-b4486dbeea74)
 
-
-### Q14) Find maximum, minimum and average salary in EMP table.
-
+### Q13) Find maximum, minimum and average salary in EMP table.
 ### QUERY:
-
-
+```
+select max(salary) from manager;
+select min(salary) from manager;
+select avg(salary) from manager;
+```
 ### OUTPUT:
+![image](https://github.com/Reebak04/DBMS/assets/118364993/3649365b-3cd8-4231-aa88-fae24a72d243)
 
-
-### Q15) List the jobs and number of employees in each job. The result should be in the descending order of the number of employees.
-
+### Q14) List the jobs and number of employees in each job. The result should be in the descending order of the number of employees.
 ### QUERY:
-
-
+```
+SELECT designation AS job, COUNT(*) AS num_employees FROM manager GROUP BY designation ORDER BY num_employees DESC;
+```
 ### OUTPUT:
-
+![image](https://github.com/Reebak04/DBMS/assets/118364993/a8be794a-7c97-4d77-b613-65f6c66fd465)
 
 ## RESULT :
 Thus the basic DML commands are executed.
